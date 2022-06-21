@@ -6,6 +6,7 @@ function erro(input,caixaMensagem,mensagem){
     input.style="border: red solid 1px;"
     caixaMensagem.innerHTML=mensagem
     
+    
 }
 function sucesso(input,caixaMensagem,){
     input.style="border: green solid 1px;"
@@ -22,7 +23,7 @@ botao.addEventListener("click",function(){
     validaçaoEmail();
     validaçaoSenha();
     validaçaoConfirmeSenha();
-
+    
     function validaçaoNome(){
     /[0-9]/.test(inputs[0].value)?erro(inputs[0],caixaMensagem[0],"Não pode ter numero"):/[^A-Za-z0-9]/.test(inputs[0].value)?erro(inputs[0],caixaMensagem[0],"Não pode ter caractere especial"):inputs[0].value===""?erro(inputs[0],caixaMensagem[0],"Campo obrigatorio"):sucesso(inputs[0],caixaMensagem[0])
     }
