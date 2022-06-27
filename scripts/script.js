@@ -44,6 +44,28 @@ botao.addEventListener("click",function(){
     // console.log("email "+validaçaoEmail())
     // console.log("senha "+validaçaoSenha())
 
+
+
+    fetchApi();
+    // função de api
+
+    function fetchApi(){
+        fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
+            method: "post",
+            headers: {
+              "Accept": "*/* , application/json, text/plain",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              firstName: "jhonatan",
+              lastName: "testando",
+              email: "super10@gmail.com",
+              password: "Senha-1",
+            }),
+          })
+          .then(resposta => resposta.json()).then(resposta => console.log(resposta))
+    }
+
     if(validaçaoConfirmeSenha()&&validaçaoEmail()&&validaçaoNome()&&validaçaoSenha()&&validaçaoSobrenome()){
         // aplicação sobre API.
     }
