@@ -16,10 +16,12 @@ function sucesso(input,caixaMensagem,){
     caixaMensagem.innerHTML=""
     return true;
 }
-localStorage.clear()
+
 function isEmail(email){
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
+
+localStorage.clear()
 
 botao.addEventListener("click",function(){
     validaçaoNome();
@@ -90,7 +92,10 @@ botao.addEventListener("click",function(){
                 color: white;
                 `
                 textoApi.innerHTML="usuario criado!!!"
-                window.location.href = '/tarefas.html'
+                setTimeout(function(){
+                    window.location.href = "file:///C:/Users/jhona/OneDrive/%C3%81rea%20de%20Trabalho/checkpoint02_front/ToDo/index.html"
+                },6000)
+                
             }
 
             
