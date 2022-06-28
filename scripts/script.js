@@ -62,24 +62,33 @@ botao.addEventListener("click",function(){
             //em manutenção
             if(resposta.statusText=="Bad Request"){
                 msmApi.style=`
-                background-color: rgb(238, 40, 40);
-                width: 85px;
+                border-radius: 5px;
+                background-color: rgb(195, 0, 0);
+                text-align: center;
+                padding-top: 5px;
+                width: 95px;
                 height: 50px;
                 color: white;
+
                 `
-                textoApi.innerHTML="usuario existente!!!"
+                textoApi.innerHTML="Usuario Existente"
             }
             //em manutenção
             if(resposta.ok){
                 resposta.json()
                 .then((data) => localStorage.setItem('jwt', data.jwt))
                 msmApi.style=`
-                background-color: green;
-                width: 85px;
+                border-radius: 5px;
+                background-color: rgb(0, 130, 22);
+                text-align: center;
+                padding-top: 5px;
+                width: 95px;
                 height: 50px;
                 color: white;
+                
+
                 `
-                textoApi.innerHTML="usuario criado!!!"
+                textoApi.innerHTML="Usuario Criado"
 
                 //em manutenção
                 setTimeout(function(){

@@ -1,13 +1,17 @@
 var input=document.getElementById("novaTarefa")
 var form = document.getElementById('nova-tarefa')
 var pendentes = document.getElementById('pendentes')
+var btnAdd=document.querySelector("button")
 
 // if (localStorage.getItem("jwt") == null || localStorage.getItem("jwt") == "") {
 //     alert("você não realizou o login");
 //     window.location.href = "/index.html"
 // }
-form.addEventListener("click",function(e){
-    if (inputTarefa.value.length != 0 ) {
+btnAdd.addEventListener("click",function(e){
+    if (input.value.length != 0 ) {
+
+        colocarTarefa();
+
         function colocarTarefa() {
             fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', {
               method: 'POST',
@@ -22,8 +26,13 @@ form.addEventListener("click",function(e){
                 "completed": false
               })
             })
-            .then(res => res.json())
+            .then((res) => {
+                res.json()
+                console.log(res);
+            })
             .then(data => {
+                console.log("teste")
+                console.log(data)
                 pendentes.innerHTML += `
                 <li class="tarefa">
                  <div class="not-done"></div>
