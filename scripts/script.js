@@ -1,3 +1,5 @@
+import {erro,isEmail,sucesso} from "./funcaoPadrao.js"
+
 var inputs = document.querySelectorAll("input");
 var botao = document.querySelector("button");
 var caixaMensagem = document.querySelectorAll(".mensagem")
@@ -5,23 +7,7 @@ var msmApi=document.querySelector(".msm-Api")
 var textoApi=document.querySelector(".texto-api")
 
 
-function erro(input,caixaMensagem,mensagem){
-    input.style="border: red solid 1px;"
-    caixaMensagem.innerHTML=mensagem
-    return false;
-    
-}
-function sucesso(input,caixaMensagem,){
-    input.style="border: green solid 1px;"
-    caixaMensagem.innerHTML=""
-    return true;
-}
-
-function isEmail(email){
-    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-}
-
-localStorage.clear()
+// localStorage.clear()
 
 botao.addEventListener("click",function(){
     validaçaoNome();
@@ -71,7 +57,9 @@ botao.addEventListener("click",function(){
           })
           .then((resposta) => {
             console.log(resposta)
-            
+
+
+            //em manutenção
             if(resposta.statusText=="Bad Request"){
                 msmApi.style=`
                 background-color: rgb(238, 40, 40);
@@ -81,7 +69,7 @@ botao.addEventListener("click",function(){
                 `
                 textoApi.innerHTML="usuario existente!!!"
             }
-
+            //em manutenção
             if(resposta.ok){
                 resposta.json()
                 .then((data) => localStorage.setItem('jwt', data.jwt))
@@ -92,6 +80,8 @@ botao.addEventListener("click",function(){
                 color: white;
                 `
                 textoApi.innerHTML="usuario criado!!!"
+
+                //em manutenção
                 setTimeout(function(){
                     window.location.href = "file:///C:/Users/jhona/OneDrive/%C3%81rea%20de%20Trabalho/checkpoint02_front/ToDo/index.html"
                 },6000)
