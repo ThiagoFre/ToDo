@@ -40,7 +40,7 @@ botao.addEventListener("click",function(){
 
     
     // função de api
-    localStorage.clear()
+    // localStorage.clear()
     function fetchApi(){
         fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
             method: "post",

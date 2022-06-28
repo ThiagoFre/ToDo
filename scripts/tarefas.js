@@ -2,10 +2,10 @@ var input=document.getElementById("novaTarefa")
 var form = document.getElementById('nova-tarefa')
 var pendentes = document.getElementById('pendentes')
 
-if (localStorage.getItem("jwt") == null || localStorage.getItem("jwt") == "") {
-    alert("você não realizou o login");
-    window.location.href = "/index.html"
-}
+// if (localStorage.getItem("jwt") == null || localStorage.getItem("jwt") == "") {
+//     alert("você não realizou o login");
+//     window.location.href = "/index.html"
+// }
 form.addEventListener("click",function(e){
     if (inputTarefa.value.length != 0 ) {
         function colocarTarefa() {
