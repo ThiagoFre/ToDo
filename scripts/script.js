@@ -59,7 +59,7 @@ botao.addEventListener("click",function(){
             console.log(resposta)
 
 
-            //em manutenção
+            
             if(resposta.statusText=="Bad Request"){
                 msmApi.style=`
                 border-radius: 5px;
@@ -73,7 +73,7 @@ botao.addEventListener("click",function(){
                 `
                 textoApi.innerHTML="Usuario Existente"
             }
-            //em manutenção
+            
             if(resposta.ok){
                 resposta.json()
                 .then((data) => localStorage.setItem('jwt', data.jwt))

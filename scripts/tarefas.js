@@ -1,18 +1,19 @@
-var input=document.getElementById("novaTarefa")
-var form = document.getElementById('nova-tarefa')
-var pendentes = document.getElementById('pendentes')
-var btnAdd=document.querySelector("button")
+var form = document.querySelector('.nova-tarefa')
+var input = document.getElementById('novaTarefa')
+var pendentes = document.querySelector('.tarefas-pendentes')
 
-// if (localStorage.getItem("jwt") == null || localStorage.getItem("jwt") == "") {
-//     alert("você não realizou o login");
-//     window.location.href = "/index.html"
-// }
-btnAdd.addEventListener("click",function(e){
-    if (input.value.length != 0 ) {
 
-        colocarTarefa();
+if (localStorage.getItem('jwt') == null || localStorage.getItem('jwt') == '') {
+    alert('Você precisa estar logado para acessar essa pagina');
+    window.location.href = 'index.html'
+}
 
-        function colocarTarefa() {
+
+
+form.addEventListener("submit", (e) => {
+    
+    if (input.value.length > 0 ) {
+        function colocaTarefa() {
             fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', {
               method: 'POST',
               headers: {
@@ -26,13 +27,8 @@ btnAdd.addEventListener("click",function(e){
                 "completed": false
               })
             })
-            .then((res) => {
-                res.json()
-                console.log(res);
-            })
+            .then(resposta => resposta.json())
             .then(data => {
-                console.log("teste")
-                console.log(data)
                 pendentes.innerHTML += `
                 <li class="tarefa">
                  <div class="not-done"></div>
@@ -43,17 +39,20 @@ btnAdd.addEventListener("click",function(e){
                 </li>
 
                 `
-
-
-
-
             })
           }
 
-          
+          colocaTarefa();
 
-          
+          e.preventDefault();
 
 
     }
+
+    else {
+        e.preventDefault();
+        alert('O campo precisa ser preenchido')
+    }
+
+
 })
