@@ -13,6 +13,7 @@ function sucesso(input,caixaMensagem,){
     caixaMensagem.innerHTML=""
     return true;
 }
+localStorage.clear()
 function isEmail(email){
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
@@ -46,9 +47,9 @@ botao.addEventListener("click",function(){
 
 
 
-    fetchApi();
+    
     // função de api
-
+    localStorage.clear()
     function fetchApi(){
         fetch("https://ctd-todo-api.herokuapp.com/v1/users", {
             method: "post",
@@ -57,18 +58,37 @@ botao.addEventListener("click",function(){
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              firstName: "jhonatan",
-              lastName: "testando",
-              email: "super10@gmail.com",
-              password: "Senha-1",
+              firstName: `${inputs[0].value}`,
+              lastName: `${inputs[1].value}`,
+              email: `${inputs[2].value}`,
+              password: `${inputs[3].value}`,
             }),
           })
-          .then(resposta => resposta.json()).then(resposta => console.log(resposta))
+          .then((resposta) => {
+            console.log(resposta)
+            
+            if(resposta.statusText=="Bad Request"){
+                
+            }
+
+            if(resposta.ok){
+                resposta.json()
+                .then((data) => localStorage.setItem('jwt', data.jwt))
+            }
+
+            
+           
+        })
+          
+          
+          
+       
     }
 
-    if(validaçaoConfirmeSenha()&&validaçaoEmail()&&validaçaoNome()&&validaçaoSenha()&&validaçaoSobrenome()){
-        // aplicação sobre API.
-    }
+    validaçaoConfirmeSenha()&&validaçaoEmail()&&validaçaoNome()&&validaçaoSenha()&&validaçaoSobrenome()?fetchApi():""
+
+        
+    
     
 })
 
