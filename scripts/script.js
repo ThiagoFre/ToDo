@@ -17,28 +17,41 @@ botao.addEventListener("click",function(){
     validaçaoConfirmeSenha();
     
     function validaçaoNome(){
-    return /[0-9]/.test(inputs[0].value)?erro(inputs[0],caixaMensagem[0],"Não pode ter numero"):/[^A-Za-z0-9]/.test(inputs[0].value)?erro(inputs[0],caixaMensagem[0],"Não pode ter caractere especial"):inputs[0].value===""?erro(inputs[0],caixaMensagem[0],"Campo obrigatorio"):sucesso(inputs[0],caixaMensagem[0])
+    return /[0-9]/.test(inputs[0].value)?erro(inputs[0],
+        caixaMensagem[0],"Não pode ter numero"):/[^A-Za-z0-9]/.test(inputs[0].value)?
+        erro(inputs[0],caixaMensagem[0],"Não pode ter caractere especial"):inputs[0].value===""?
+        erro(inputs[0],caixaMensagem[0],"Campo obrigatorio"):sucesso(inputs[0],caixaMensagem[0])
     }
     function validaçaoSobrenome(){
-        return /[0-9]/.test(inputs[1].value)?erro(inputs[1],caixaMensagem[1],"Não pode ter numero"):/[^A-Za-z0-9]/.test(inputs[1].value)?erro(inputs[1],caixaMensagem[1],"Não pode ter caractere especial"):inputs[1].value===""?erro(inputs[1],caixaMensagem[1],"Campo obrigatorio"):sucesso(inputs[1],caixaMensagem[1])
+        return /[0-9]/.test(inputs[1].value)?erro(inputs[1],caixaMensagem[1],
+            "Não pode ter numero"):/[^A-Za-z0-9]/.test(inputs[1].value)?
+            erro(inputs[1],caixaMensagem[1],"Não pode ter caractere especial"):
+            inputs[1].value===""?erro(inputs[1],caixaMensagem[1],"Campo obrigatorio"):
+            sucesso(inputs[1],caixaMensagem[1])
     }
     function validaçaoEmail(){
-       return inputs[2].value===""?erro(inputs[2],caixaMensagem[2],"Campo obrigatorio"):!isEmail(inputs[2].value)?erro(inputs[2],caixaMensagem[2],"Você digitou o email errado"):sucesso(inputs[2],caixaMensagem[2])
+       return inputs[2].value===""?erro(inputs[2],caixaMensagem[2],"Campo obrigatorio"):
+       !isEmail(inputs[2].value)?erro(inputs[2],caixaMensagem[2],"Você digitou o email errado"):
+       sucesso(inputs[2],caixaMensagem[2])
     }
     function validaçaoSenha(){
-       return inputs[3].value===""?erro(inputs[3],caixaMensagem[3],"Campo obrigatorio"):inputs[3].value.length<6?erro(inputs[3],caixaMensagem[3],"A senha deve conter mais de 6 caracteres"):inputs[3].value.length>15?erro(inputs[3],caixaMensagem[3],"A senha não deve conter mais de que 15 caracteres"):!/[0-9]/.test(inputs[3].value)||!/[^A-Za-z0-9]/.test(inputs[3].value)||!/[A-Z]/.test(inputs[3].value)?erro(inputs[3],caixaMensagem[3],"A senha deve ter uma letra maíuscula,um número e um caracter especial (-,*,#,>)"):sucesso(inputs[3],caixaMensagem[3])
+       return inputs[3].value===""?erro(inputs[3],caixaMensagem[3],"Campo obrigatorio"):
+       inputs[3].value.length<6?erro(inputs[3],caixaMensagem[3],"A senha deve conter mais de 6 caracteres"):
+       inputs[3].value.length>15?erro(inputs[3],caixaMensagem[3],"A senha não deve conter mais de que 15 caracteres"):
+       !/[0-9]/.test(inputs[3].value)||!/[^A-Za-z0-9]/.test(inputs[3].value)||!/[A-Z]/.test(inputs[3].value)?erro
+       (inputs[3],caixaMensagem[3],"A senha deve ter uma letra maíuscula,um número e um caracter especial (-,*,#,>)"):
+       sucesso(inputs[3],caixaMensagem[3])
     }
     function validaçaoConfirmeSenha(){
-       return inputs[4].value===""?erro(inputs[4],caixaMensagem[4],"Campo obrigatorio"):inputs[4].value!=inputs[3].value?erro(inputs[4],caixaMensagem[4],"Senhas diferentes"):sucesso(inputs[4],caixaMensagem[4])
+       return inputs[4].value===""?erro(inputs[4],caixaMensagem[4],"Campo obrigatorio"):
+       inputs[4].value!=inputs[3].value?erro(inputs[4],caixaMensagem[4],"Senhas diferentes"):
+       sucesso(inputs[4],caixaMensagem[4])
     }
     // console.log("nome "+validaçaoNome())
     // console.log("sobrenome "+validaçaoSobrenome())
     // console.log("email "+validaçaoEmail())
     // console.log("senha "+validaçaoSenha())
 
-
-
-    
     // função de api
     // localStorage.clear()
     function fetchApi(){
@@ -69,7 +82,6 @@ botao.addEventListener("click",function(){
                 width: 95px;
                 height: 50px;
                 color: white;
-
                 `
                 textoApi.innerHTML="Usuario Existente"
             }
@@ -85,8 +97,6 @@ botao.addEventListener("click",function(){
                 width: 95px;
                 height: 50px;
                 color: white;
-                
-
                 `
                 textoApi.innerHTML="Usuario Criado"
 
@@ -97,25 +107,13 @@ botao.addEventListener("click",function(){
                 
             }
 
-            
-           
         })
           
-          
-          
-       
     }
 
     validaçaoConfirmeSenha()&&validaçaoEmail()&&validaçaoNome()&&validaçaoSenha()&&validaçaoSobrenome()?fetchApi():""
 
-        
-    
-    
 })
-
-
-
-
 
 /*
 
