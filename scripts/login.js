@@ -43,7 +43,7 @@ btn.addEventListener("click",function(){
                     resposta.json()
                     .then((data) => localStorage.setItem('jwt', data.jwt))
                     console.log("teste001 aprovado")
-                    // window.location.href = '/tarefas.html'
+                    window.location.href = 'http://127.0.0.1:5500/ToDo/tarefas.html?'
                 }
                 
             })
