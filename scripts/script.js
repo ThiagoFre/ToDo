@@ -1,6 +1,9 @@
 var inputs = document.querySelectorAll("input");
 var botao = document.querySelector("button");
 var caixaMensagem = document.querySelectorAll(".mensagem")
+var msmApi=document.querySelector(".msm-Api")
+var textoApi=document.querySelector(".texto-api")
+
 
 function erro(input,caixaMensagem,mensagem){
     input.style="border: red solid 1px;"
@@ -68,12 +71,26 @@ botao.addEventListener("click",function(){
             console.log(resposta)
             
             if(resposta.statusText=="Bad Request"){
-                
+                msmApi.style=`
+                background-color: rgb(238, 40, 40);
+                width: 85px;
+                height: 50px;
+                color: white;
+                `
+                textoApi.innerHTML="usuario existente!!!"
             }
 
             if(resposta.ok){
                 resposta.json()
                 .then((data) => localStorage.setItem('jwt', data.jwt))
+                msmApi.style=`
+                background-color: green;
+                width: 85px;
+                height: 50px;
+                color: white;
+                `
+                textoApi.innerHTML="usuario criado!!!"
+                window.location.href = '/tarefas.html'
             }
 
             
