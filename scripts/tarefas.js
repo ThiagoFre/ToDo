@@ -29,6 +29,7 @@ form.addEventListener("submit", (e) => {
             })
             .then(resposta => resposta.json())
             .then(data => {
+              console.log(data)
                 pendentes.innerHTML += `
                 <li class="tarefa">
                  <div class="not-done"></div>
@@ -51,8 +52,37 @@ form.addEventListener("submit", (e) => {
 
     else {
         e.preventDefault();
-        alert('O campo precisa ser preenchido')
+        alert("Campo não pode esta vazio")
     }
 
 
+})
+
+fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', {
+  method: 'GET',
+  headers: {
+    'Accept': '*/* , application/json, text/plain',
+    'Content-Type':  'application/json',
+    'authorization': `${localStorage.getItem('jwt')}`
+  }
+}).then(resposta=>
+  resposta.json()).then(data=>{
+  console.log(data)
+  // let i=0;
+  // while(i<data.length){
+
+  // }
+  // usar for of
+  for(let tarefas of data){
+    pendentes.innerHTML += `
+                <li class="tarefa">
+                 <div class="not-done"></div>
+                <div class="descricao">
+                <p class="nome">${tarefas.description}</p>
+                <p class="timestamp">${tarefas.createdAt}</p>
+                </div>
+                </li>
+
+                `
+  }
 })
