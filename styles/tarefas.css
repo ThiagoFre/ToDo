@@ -226,6 +226,7 @@ a {
 
 #skeleton .descricao{
   background-color: rgb(189, 189, 189);
+  
 }
 #skeleton p{
   background-color: rgb(214, 214, 214);
@@ -243,4 +244,11 @@ a {
   100%{ opacity: 0.8;}
 }
 
-
+#lixeira{
+  max-width: 30px;
+  cursor: pointer;
+}
+#voltar{
+  max-width: 30px;
+  cursor: pointer;
+}
