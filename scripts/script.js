@@ -102,7 +102,7 @@ botao.addEventListener("click",function(){
 
                 //em manutenção
                 setTimeout(function(){
-                    window.location.href = "file:///C:/Users/jhona/OneDrive/%C3%81rea%20de%20Trabalho/checkpoint02_front/ToDo/index.html"
+                    window.location.href = "/ToDo/tarefas.html"
                 },6000)
                 
             }

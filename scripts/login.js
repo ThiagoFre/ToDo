@@ -15,7 +15,7 @@ btn.addEventListener("click",function(){
     function verificaçaoEmail(){
         return inputs[0].value===""?erro(inputs[0],caixaMensagem[0],"Campo obrigatorio"):
         !isEmail(inputs[0].value)?erro(inputs[0],caixaMensagem[0],"Você digitou o email errado"):
-        ""
+        sucesso(inputs[0],caixaMensagem[0])
      }
 
      function verificaçaoSenha(){
@@ -23,7 +23,7 @@ btn.addEventListener("click",function(){
         inputs[1].value.length<6?erro(inputs[1],caixaMensagem[1],"A senha deve conter mais de 6 caracteres"):
         inputs[1].value.length>15?erro(inputs[1],caixaMensagem[1],"A senha não deve conter mais de que 15 caracteres"):
         !/[0-9]/.test(inputs[1].value)||!/[^A-Za-z0-9]/.test(inputs[1].value)||!/[A-Z]/.test(inputs[1].value)?erro(inputs[1],caixaMensagem[1],
-        "A senha deve ter uma letra maíuscula,um número e um caracter especial (-,*,#,>)"):""
+        "A senha deve ter uma letra maíuscula,um número e um caracter especial (-,*,#,>)"):sucesso(inputs[1],caixaMensagem[1])
      }
 
      if(verificaçaoEmail()&&verificaçaoSenha()){
@@ -43,8 +43,7 @@ btn.addEventListener("click",function(){
                 if (resposta.statusText == 'Not Found') {
                     //aplicação de para mostrar para o usuario que usuario não existe.
 
-                    erro(inputs[0],caixaMensagem[0],"")
-                    erro(inputs[1],caixaMensagem[1],"")
+                    
                     let caixa=document.querySelector(".caixaNotificacao")
                     let tagP=document.querySelector(".textoApi-Login")
                     let texto="Usuario não existe"
@@ -64,8 +63,7 @@ btn.addEventListener("click",function(){
                 if(resposta.statusText=="Bad Request"){
                     // aplicação para mostrar para o usuario que senha ou email esta incorreto
 
-                    erro(inputs[0],caixaMensagem[0],"")
-                    erro(inputs[1],caixaMensagem[1],"")
+                   
                     let caixa=document.querySelector(".caixaNotificacao")
                     let tagP=document.querySelector(".textoApi-Login")
                     let texto="Email ou Senha incorreto"
@@ -83,8 +81,7 @@ btn.addEventListener("click",function(){
                     console.log("teste dados incorretos")
                 }
                 else if (resposta.ok) {
-                    sucesso(inputs[1],caixaMensagem[1])
-                    sucesso(inputs[0],caixaMensagem[0])
+                    
                     let caixa=document.querySelector(".caixaNotificacao")
                     let tagP=document.querySelector(".textoApi-Login")
                     let texto="Login Aprovado"
