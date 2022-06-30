@@ -41,14 +41,55 @@ btn.addEventListener("click",function(){
             .then((resposta) => {
                 console.log(resposta)
                 if (resposta.statusText == 'Not Found') {
-                    //aplicação de para mostrar para o usuario que usuario não existe
+                    //aplicação de para mostrar para o usuario que usuario não existe.
+                    let caixa=document.querySelector(".caixaNotificacao")
+                    let tagP=document.querySelector(".textoApi-Login")
+                    let texto="Usuario não existe"
+                    caixa.style=`
+                    border-radius: 5px;
+                    background-color: rgb(195, 0, 0);
+                    text-align: center;
+                    padding-top: 5px;
+                    width: 95px;
+                    height: 50px;
+                    color: white;
+                    `
+                    tagP.innerHTML+=texto
+
                     console.log("teste usuario não existe")
                 }
                 if(resposta.statusText=="Bad Request"){
                     // aplicação para mostrar para o usuario que senha ou email esta incorreto
+                    let caixa=document.querySelector(".caixaNotificacao")
+                    let tagP=document.querySelector(".textoApi-Login")
+                    let texto="Email ou Senha incorreto"
+                    caixa.style=`
+                    border-radius: 5px;
+                    background-color: rgb(195, 0, 0);
+                    text-align: center;
+                    padding-top: 5px;
+                    width: 95px;
+                    height: 50px;
+                    color: white;
+                    `
+                    tagP.innerHTML+=texto
+
                     console.log("teste dados incorretos")
                 }
                 else if (resposta.ok) {
+                    let caixa=document.querySelector(".caixaNotificacao")
+                    let tagP=document.querySelector(".textoApi-Login")
+                    let texto="Login Aprovado"
+                    caixa.style=`
+                    border-radius: 5px;
+                    background-color: green;
+                    text-align: center;
+                    padding-top: 5px;
+                    width: 95px;
+                    height: 50px;
+                    color: white;
+                    `
+                    tagP.innerHTML+=texto
                     resposta.json()
                     .then((data) => {
                       console.log(data)
