@@ -3,7 +3,7 @@ var input = document.getElementById("novaTarefa")
 var pendentes = document.querySelector(".tarefas-pendentes")
 var tarefasRealizada=document.querySelector(".tarefas-terminadas")
 var nome=document.querySelector(".nomeU")
-
+var btnPronto=document.querySelector(".not-done")
 
 if (localStorage.getItem("jwt") == null || localStorage.getItem("jwt") == "") {
     alert("Você precisa estar logado para acessar essa pagina");
@@ -80,10 +80,10 @@ fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', {
   
   
   for(let tarefas of data){
-    if(tarefas.completed){
+    if(!tarefas.completed){
       pendentes.innerHTML += `
                 <li id="${tarefas.id}" class="tarefa">
-                 <div class="not-done"></div>
+                 <div id="${tarefas.id}" onclick="terminarTarefa(${tarefas.id}"class="not-done"></div>
                 <div class="descricao">
                 <p class="nome">ID: ${tarefas.id}</p>
                 <p class="nome">${tarefas.description}</p>
@@ -96,7 +96,7 @@ fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', {
     }else{
       tarefasRealizada.innerHTML += `
           <li id="${tarefas.id}" class="tarefa">
-          <div class="not-done"></div>
+          
           <div class="descricao">
           <p class="nome">ID: ${tarefas.id}</p>
           <p class="nome">${tarefas.description}</p>
@@ -150,3 +150,20 @@ fetch('https://ctd-todo-api.herokuapp.com/v1/users/getMe', {
   console.log(nomeUsuario)
   
 })
+
+// em manutenção
+function terminarTarefa(id){
+  fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Accept': '*/* , application/json, text/plain',
+      'Content-Type':  'application/json',
+      'authorization': `${localStorage.getItem('jwt')}`
+    },
+    body: JSON.stringify({
+      "completed": true
+    })
+  }).then(resposta=>resposta.json()).then(data=>{
+    console.log(data)
+  })
+}
