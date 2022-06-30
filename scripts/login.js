@@ -45,7 +45,7 @@ btn.addEventListener("click",function(){
 
                     
                     let caixa=document.querySelector(".caixaNotificacao")
-                    let tagP=document.querySelector(".textoApi-Login")
+                    
                     let texto="Usuario não existe"
                     caixa.style=`
                     border-radius: 5px;
@@ -56,7 +56,7 @@ btn.addEventListener("click",function(){
                     height: 50px;
                     color: white;
                     `
-                    tagP.innerHTML+=texto
+                    textoApi.innerHTML+=texto
 
                     console.log("teste usuario não existe")
                 }
@@ -65,7 +65,7 @@ btn.addEventListener("click",function(){
 
                    
                     let caixa=document.querySelector(".caixaNotificacao")
-                    let tagP=document.querySelector(".textoApi-Login")
+                    
                     let texto="Email ou Senha incorreto"
                     caixa.style=`
                     border-radius: 5px;
@@ -76,14 +76,14 @@ btn.addEventListener("click",function(){
                     height: 50px;
                     color: white;
                     `
-                    tagP.innerHTML+=texto
+                    textoApi.innerHTML+=texto
 
                     console.log("teste dados incorretos")
                 }
                 else if (resposta.ok) {
                     
                     let caixa=document.querySelector(".caixaNotificacao")
-                    let tagP=document.querySelector(".textoApi-Login")
+                    
                     let texto="Login Aprovado"
                     caixa.style=`
                     border-radius: 5px;
@@ -94,7 +94,7 @@ btn.addEventListener("click",function(){
                     height: 50px;
                     color: white;
                     `
-                    tagP.innerHTML+=texto
+                    textoApi.innerHTML+=texto
                     resposta.json()
                     .then((data) => {
                       console.log(data)
