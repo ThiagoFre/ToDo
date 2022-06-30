@@ -50,9 +50,12 @@ btn.addEventListener("click",function(){
                 }
                 else if (resposta.ok) {
                     resposta.json()
-                    .then((data) => localStorage.setItem('jwt', data.jwt))
-                    console.log("teste aprovado")
-                    window.location.href = '/ToDo/tarefas.html?'
+                    .then((data) => {
+                      console.log(data)
+                      localStorage.setItem('jwt', data.jwt)})
+
+                    
+                    // window.location.href = '/ToDo/tarefas.html?'
                 }
                 
             })

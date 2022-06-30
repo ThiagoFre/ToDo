@@ -1,25 +1,27 @@
-var form = document.querySelector('.nova-tarefa')
-var input = document.getElementById('novaTarefa')
-var pendentes = document.querySelector('.tarefas-pendentes')
+var form = document.querySelector(".nova-tarefa")
+var input = document.getElementById("novaTarefa")
+var pendentes = document.querySelector(".tarefas-pendentes")
+var tarefasRealizada=document.querySelector(".tarefas-terminadas")
+var nome=document.querySelector(".nome")
 
 
-if (localStorage.getItem('jwt') == null || localStorage.getItem('jwt') == '') {
-    alert('Você precisa estar logado para acessar essa pagina');
-    window.location.href = 'index.html'
+if (localStorage.getItem("jwt") == null || localStorage.getItem("jwt") == "") {
+    alert("Você precisa estar logado para acessar essa pagina");
+    window.location.href = "index.html"
 }
 
-
+//===============================================================\\
 
 form.addEventListener("submit", (e) => {
     
     if (input.value.length > 0 ) {
         function colocaTarefa() {
-            fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', {
-              method: 'POST',
+            fetch("https://ctd-todo-api.herokuapp.com/v1/tasks", {
+              method: "POST",
               headers: {
-                'Accept': '*/* , application/json, text/plain',
-                'Content-Type':  'application/json',
-                'authorization': `${localStorage.getItem('jwt')}`
+                "Accept": "*/* , application/json, text/plain",
+                "Content-Type":  "application/json",
+                "authorization": `${localStorage.getItem("jwt")}`
               },
               
               body: JSON.stringify({
@@ -31,23 +33,22 @@ form.addEventListener("submit", (e) => {
             .then(data => {
               console.log(data)
                 pendentes.innerHTML += `
-                <li class="tarefa">
+                <li id="${data.id}" class="tarefa">
                  <div class="not-done"></div>
                 <div class="descricao">
+                <p class="nome">ID: ${data.id}</p>
                 <p class="nome">${data.description}</p>
-                <p class="timestamp">${data.createdAt}</p>
+                <p class="timestamp">${dayjs(data.createdAt).format('DD/MM/YYYY') }</p>
+                <button class="btnTarefas" onclick="apagarTarefa(${data.id})">apagar</button>
                 </div>
+                
                 </li>
 
                 `
             })
           }
-
           colocaTarefa();
-
           e.preventDefault();
-
-
     }
 
     else {
@@ -58,6 +59,14 @@ form.addEventListener("submit", (e) => {
 
 })
 
+
+
+
+//==========================================================================\\
+
+
+
+//usar ${}
 fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', {
   method: 'GET',
   headers: {
@@ -68,21 +77,73 @@ fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', {
 }).then(resposta=>
   resposta.json()).then(data=>{
   console.log(data)
-  // let i=0;
-  // while(i<data.length){
-
-  // }
-  // usar for of
+  
+  
   for(let tarefas of data){
-    pendentes.innerHTML += `
-                <li class="tarefa">
+    if(!tarefas.completed){
+      pendentes.innerHTML += `
+                <li id="${tarefas.id}" class="tarefa">
                  <div class="not-done"></div>
                 <div class="descricao">
+                <p class="nome">ID: ${tarefas.id}</p>
                 <p class="nome">${tarefas.description}</p>
-                <p class="timestamp">${tarefas.createdAt}</p>
+                <p class="timestamp">${dayjs(tarefas.createdAt).format('DD/MM/YYYY') }</p>
+                <button class="btnTarefas" onclick="apagarTarefa(${tarefas.id})">apagar</button>
                 </div>
+                
                 </li>
-
                 `
+    }else{
+      tarefasRealizada.innerHTML += `
+          <li id="${tarefas.id}" class="tarefa">
+          <div class="not-done"></div>
+          <div class="descricao">
+          <p class="nome">ID: ${tarefas.id}</p>
+          <p class="nome">${tarefas.description}</p>
+          <p class="timestamp">${dayjs(tarefas.createdAt).format('DD/MM/YYYY') }</p>
+          <button class="btnTarefas" onclick="apagarTarefa(${tarefas.id})">apagar</button>
+          </div>
+     
+     </li>
+
+              `
+    }
+    
   }
+
+  
+})
+
+//função chamada pelo o evento onclick
+function apagarTarefa(id){
+  fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': '*/* , application/json, text/plain',
+      'Content-Type':  'application/json',
+      'authorization': `${localStorage.getItem('jwt')}`
+    }
+  })
+  
+  document.getElementById(`${id}`).remove();// usado para apagar as tarefa do ToDo
+  
+  
+}
+
+//============================================\\
+
+//pegar dados do usuario
+fetch('https://ctd-todo-api.herokuapp.com/v1/users/getMe', {
+  method: 'GET',
+  headers: {
+    'Accept': '*/* , application/json, text/plain',
+    'Content-Type':  'application/json',
+    'authorization': `${localStorage.getItem('jwt')}`
+  }
+}).then(resposta=>
+  resposta.json()).then(data=>{
+  // coloca o nome do cliente no ToDo
+  var nomeUsuario=document.createTextNode(`${data.firstName} ${data.lastName}`)
+  console.log(nomeUsuario)
+  
 })
