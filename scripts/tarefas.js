@@ -43,15 +43,15 @@ form.addEventListener("submit", (e) => {
               console.log(data)
                 pendentes.innerHTML += `
                 <li id="${data.id}" class="tarefa">
-                 <div class="not-done"></div>
-                <div class="descricao">
-                <p class="nome">ID: ${data.id}</p>
-                <p class="nome">${data.description}</p>
-                <p class="timestamp">${dayjs(data.createdAt).format('DD/MM/YYYY') }</p>
-                
-                </div>
-                
-                </li>
+                <div id="${data.id}" onclick="terminarTarefa(${data.id})"class="not-done"></div>
+               <div class="descricao">
+               <p class="nome">ID: ${data.id}</p>
+               <p class="nome">${data.description}</p>
+               <p class="timestamp">${dayjs(data.createdAt).format('DD/MM/YYYY') }</p>
+               
+               </div>
+               
+               </li>
 
                 `
             })

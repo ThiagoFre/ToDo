@@ -20,10 +20,7 @@ btn.addEventListener("click",function(){
 
      function verificaçaoSenha(){
         return inputs[1].value===""?erro(inputs[1],caixaMensagem[1],"Campo obrigatorio"):
-        inputs[1].value.length<6?erro(inputs[1],caixaMensagem[1],"A senha deve conter mais de 6 caracteres"):
-        inputs[1].value.length>15?erro(inputs[1],caixaMensagem[1],"A senha não deve conter mais de que 15 caracteres"):
-        !/[0-9]/.test(inputs[1].value)||!/[^A-Za-z0-9]/.test(inputs[1].value)||!/[A-Z]/.test(inputs[1].value)?erro(inputs[1],caixaMensagem[1],
-        "A senha deve ter uma letra maíuscula,um número e um caracter especial (-,*,#,>)"):sucesso(inputs[1],caixaMensagem[1])
+        inputs[1].value.length<6?erro(inputs[1],caixaMensagem[1],"A senha deve conter mais de 6 caracteres"):sucesso(inputs[1],caixaMensagem[1])
      }
 
      if(verificaçaoEmail()&&verificaçaoSenha()){
@@ -73,7 +70,7 @@ btn.addEventListener("click",function(){
                     text-align: center;
                     padding-top: 5px;
                     width: 95px;
-                    height: 50px;
+                    height: 60px;
                     color: white;
                     `
                     textoApi.innerHTML+=texto
@@ -91,7 +88,7 @@ btn.addEventListener("click",function(){
                     text-align: center;
                     padding-top: 5px;
                     width: 95px;
-                    height: 50px;
+                    height: 70px;
                     color: white;
                     `
                     textoApi.innerHTML+=texto
@@ -101,7 +98,7 @@ btn.addEventListener("click",function(){
                       localStorage.setItem('jwt', data.jwt)})
 
                     
-                    window.location.href = '/ToDo/tarefas.html?'
+                    window.location.href = '/ToDo/tarefas.html'
                 }
                 
             })
