@@ -109,7 +109,7 @@ fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', {
           <div class="descricao">
           <p class="nome">ID: ${tarefas.id}</p>
           <p class="nome">${tarefas.description}</p>
-          <div>
+          <div class="icones">
           <img id="voltar" onclick="voltarTarefa(${tarefas.id})" src="./img/botao-de-seta-curva-para-a-esquerda.png" alt="">
           <img onclick="apagarTarefa(${tarefas.id})" id="lixeira" src="./img/excluir.png" alt="">
           </div>

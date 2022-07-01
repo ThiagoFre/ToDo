@@ -252,3 +252,7 @@ a {
   max-width: 30px;
   cursor: pointer;
 }
+.icones{
+  display: flex;
+  flex-direction: row;
+}
